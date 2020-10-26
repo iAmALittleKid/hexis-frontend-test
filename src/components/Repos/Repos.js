@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Repo from "./Repo";
-import "./Repos.css";
+import { ListGroup, ListGroupItem } from "reactstrap";
 
 class Repos extends Component {
   render() {
     const { repos } = this.props;
     let repoList = repos.map((ele) => {
-      return <Repo name={ele.name} key={ele.id} />;
+      return (
+        <ListGroupItem>
+          <Repo name={ele.name} key={ele.id} />
+        </ListGroupItem>
+      );
     });
-    return (
-      <div className="Repos">
-        <h2>Repos</h2>
-        <div id="repo_list">{repoList}</div>
-      </div>
-    );
+    return <ListGroup>{repoList}</ListGroup>;
   }
 }
 function mapStateToProps(reduxState) {

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setUsername, setRepos, setOrgs } from "../../ducks/reducer";
 import axios from "axios";
-import "./Search.css";
+import { InputGroup, InputGroupAddon, Input, Button } from "reactstrap";
+import searchImage from '../../Assets/Img/search.svg';
 
 export class Search extends Component {
   state = {
@@ -36,14 +37,19 @@ export class Search extends Component {
   render() {
     return (
       <div className="Search">
-        <h2>Search Users</h2>
         <form onSubmit={this.handleSubmit}>
-          <input
+        <InputGroup>
+          <Input
             id="username_input"
-            placeholder="GitHub Username"
+            placeholder="Type a user name here"
             onChange={(e) => this.handleUsernameChange(e)}
           />
-          <button type="submit">Search</button>
+          <InputGroupAddon addonType="append">
+            <Button type="submit">
+              <img width="20px" alt="" src={searchImage}/>
+            </Button>
+          </InputGroupAddon>
+        </InputGroup>
         </form>
       </div>
     );

@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Org from "./Org";
-import "./Orgs.css";
+import { ListGroup, ListGroupItem } from "reactstrap";
 
 class Orgs extends Component {
   render() {
     const { orgs } = this.props;
     let orgList = orgs.map((ele) => {
-      return <Org name={ele.login} key={ele.id} />;
+      return (
+        <ListGroupItem>
+          <Org name={ele.login} key={ele.id} />
+        </ListGroupItem>
+      );
     });
-    return (
-      <div className="Orgs">
-        <div id="org_list">{orgList}</div>
-      </div>
-    );
+
+    return <ListGroup>{orgList}</ListGroup>;
   }
 }
 

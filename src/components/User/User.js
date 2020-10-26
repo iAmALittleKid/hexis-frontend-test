@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./User.css";
 import axios from "axios";
+import './User.css';
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardImg,
+  CardTitle,
+  CardSubtitle,
+} from "reactstrap";
+import searchImage from '../../Assets/Img/search.svg';
 
 export class User extends Component {
   state = {
@@ -22,19 +32,36 @@ export class User extends Component {
 
   render() {
     return (
-      <div className="User">
-        <h2>User</h2>
-        {this.state.pic === "" ? null : (
-          <img src={this.state.pic} alt="Avatar_Pic"></img>
-        )}
-        {this.state.name === "" ? null : <h3>{this.state.name}</h3>}
-        {this.props.username === "" ? (
-          <div>
-            <h3>No User Available</h3>
-          </div>
-        ) : (
-          <h4>{this.props.username}</h4>
-        )}
+      <div>
+        <Card>
+          {this.state.pic === "" ? null : (
+            <CardImg
+              top
+              width="40%"
+              src={this.state.pic}
+              alt="Card image cap"
+            />
+          )}
+          {this.state.name === "" ? null : (
+            <CardTitle>{this.state.name}</CardTitle>
+          )}
+          {this.props.username === "" ? (
+            <Container className="user">
+              <Row>
+                <Col>
+                  <img width="150px" alt="Search Button" src={searchImage} />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <h3>Enter a login, name or a company you are looking for.</h3>
+                </Col>
+              </Row>
+            </Container>
+          ) : (
+            <CardSubtitle>{this.props.username}</CardSubtitle>
+          )}
+        </Card>
       </div>
     );
   }
